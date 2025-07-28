@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undian Berhadiah Spesial</title>
+    <title>UNDIAN BERHADIAH</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>UNDIAN BERHADIAH SPESIAL</h1>
-        <p>Klik tombol di bawah untuk memutar undian dan dapatkan hadiah menarik!</p>
+        <h1>UNDIAN BERHADIAH MISTERIUS</h1>
+        <p class="subtitle">Putar roda untuk mengklaim hadiah eksklusif Anda!</p>
         
         <div class="wheel-container">
             <div class="pointer"></div>
-            <div class="wheel" id="wheel"></div>
+            <div class="wheel" id="wheel">
+                <!-- Segmen hadiah akan diisi oleh JavaScript -->
+            </div>
             <div class="wheel-center"></div>
         </div>
         
-        <div class="prize-display" id="prizeDisplay">Hadiah akan muncul di sini</div>
+        <div class="prize-display" id="prizeDisplay">Hadiah akan muncul di sini...</div>
         
-        <button id="spinButton">PUTAR UNDIAN</button>
+        <button id="spinButton">PUTAR RODA</button>
         <div class="spinner" id="spinner"></div>
         
-        <div class="prank-message" id="prankMessage">SELAMAT ANDA KENA PRANK! 🤣</div>
+        <div class="prank-container" id="prankContainer">
+            <div class="prank-message">SELAMAT ANDA KENA PRANK!</div>
+            <div class="scary-face">👹</div>
+            <div class="prank-submessage">Tidak ada hadiah untuk Anda hari ini!</div>
+            <div class="laugh-text">HAHAHAHAHA!!!</div>
+        </div>
     </div>
+
+    <audio id="scarySound" src="https://assets.mixkit.co/sfx/preview/mixkit-horror-laugh-283.mp3" preload="auto"></audio>
+    <audio id="spinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
