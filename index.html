@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNDIAN BERHADIAH</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>UNDIAN BERHADIAH</h1>
+        <p class="subtitle">Putar roda untuk mengklaim hadiah eksklusif Anda!</p>
+        
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel"></div>
+            <div class="wheel-center"></div>
+        </div>
+        
+        <div class="prize-display" id="prizeDisplay">Hadiah akan muncul di sini...</div>
+        
+        <button id="spinButton">PUTAR RODA</button>
+        <div class="spinner" id="spinner"></div>
+    </div>
+
+    <div id="jumpscare" class="jumpscare">
+        <img src="Jumpscare.jpg" alt="Jumpscare" class="jumpscare-image">
+        <div class="prank-message" id="prankMessage">SELAMAT ANDA KENA PRANK! 🤣</div>
+        <audio id="screamSound" src="scream.mp3" preload="auto"></audio>
+        <audio id="laughSound" src="laugh.mp3" preload="auto"></audio>
+        <audio id="spinSound" src="spin.mp3" preload="auto"></audio>
+        <audio id="winSound" src="win.mp3" preload="auto"></audio>
+    </div>
+
+    <script src="script.js"></script>
+<div id="prankPopup" class="prank-popup">
+    <div class="popup-content">
+        <h2>SELAMAT ANDA KENA PRANK! <span class="emoji">🤣</span></h2>
+        <p>Kamu benar-benar mengira akan mendapatkan hadiah?</p>
+        <div class="laugh-emoji">😂😂😂</div>
+        <button id="closePopup">MAIN LAGI</button>
+    </div>
+</div>
+</body>
+</html>
