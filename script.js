@@ -165,3 +165,39 @@ function resetGame() {
     prizeDisplay.textContent = "Berani coba lagi?";
     wheel.style.transform = 'rotate(0deg)';
 }
+// Tambahkan di bagian variabel global
+const prankPopup = document.getElementById('prankPopup');
+const closePopup = document.getElementById('closePopup');
+
+// Modifikasi fungsi triggerJumpscare
+function triggerJumpscare() {
+    // Tampilkan jumpscare
+    jumpscare.style.display = 'flex';
+    playSound(screamSound, 0.8);
+    
+    setTimeout(() => {
+        jumpscare.classList.add('active');
+        playSound(laughSound, 0.6);
+    }, 1000);
+    
+    setTimeout(() => {
+        jumpscare.style.display = 'none';
+        jumpscare.classList.remove('active');
+        showPrankPopup(); // Tampilkan popup setelah jumpscare
+    }, 3000);
+}
+
+// Fungsi tampilkan popup
+function showPrankPopup() {
+    prankPopup.style.display = 'flex';
+    playSound(laughSound, 0.5);
+}
+
+// Fungsi tutup popup
+function closePrankPopup() {
+    prankPopup.style.display = 'none';
+    resetGame();
+}
+
+// Event listener untuk tombol close
+closePopup.addEventListener('click', closePrankPopup);
