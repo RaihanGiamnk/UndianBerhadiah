@@ -124,12 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Reset permainan
-    function resetGame() {
-        spinButton.disabled = false;
-        prizeDisplay.textContent = "Berani coba lagi?";
-        wheel.style.transform = 'rotate(0deg)';
-        document.body.style.overflow = 'auto';
-    }
+   function resetGame() {
+    spinButton.disabled = false;
+    prizeDisplay.textContent = "Berani coba lagi?";
+    wheel.style.transform = 'rotate(0deg)';
+    document.body.style.overflow = 'auto'; // Pastikan scroll diaktifkan kembali
+}
     
     // Event listener
     spinButton.addEventListener('click', spinWheel);
