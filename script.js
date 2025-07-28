@@ -138,3 +138,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inisialisasi
     initWheel();
 });
+function triggerJumpscare() {
+    // Tampilkan jumpscare
+    jumpscare.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Mainkan suara jeritan
+    playSound(screamSound, 0.8);
+    
+    // Setelah 1 detik, mainkan suara tawa
+    setTimeout(() => {
+        playSound(laughSound, 0.6);
+    }, 1000);
+    
+    // Setelah 3 detik total (2 detik setelah suara tawa), sembunyikan jumpscare dan tampilkan popup
+    setTimeout(() => {
+        jumpscare.style.display = 'none';
+        showPrankPopup();
+    }, 3000);
+}
+
+function showPrankPopup() {
+    // Tampilkan popup dengan animasi
+    prankPopup.style.display = 'flex';
+    
+    // Mainkan suara tawa lagi untuk efek
+    playSound(laughSound, 0.5);
+    
+    // Reset scroll body
+    document.body.style.overflow = 'auto';
+}
