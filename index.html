@@ -24,10 +24,13 @@
     </div>
 
     <!-- Halaman Jumpscare (tersembunyi awal) -->
-    <div id="jumpscare" class="jumpscare">
-        <img src="Jumpscare.jpg" alt="Jumpscare" class="jumpscare-image">
-        <audio id="screamSound" src="https://assets.mixkit.co/sfx/preview/mixkit-horror-scream-2886.mp3" preload="auto"></audio>
-    </div>
+    <!-- Di dalam div jumpscare, tambahkan: -->
+<div id="jumpscare" class="jumpscare">
+    <img src="Jumpscare.jpg" alt="Jumpscare" class="jumpscare-image">
+    <div class="prank-message" id="prankMessage">SELAMAT ANDA KENA PRANK! 🤣</div>
+    <audio id="screamSound" src="https://assets.mixkit.co/sfx/preview/mixkit-horror-scream-2886.mp3" preload="auto"></audio>
+    <audio id="laughSound" src="https://assets.mixkit.co/sfx/preview/mixkit-evil-laugh-283.mp3" preload="auto"></audio>
+</div>
 
     <script src="script.js"></script>
 </body>
