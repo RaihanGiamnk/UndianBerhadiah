@@ -81,21 +81,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function showJumpscare() {
-        // Tampilkan jumpscare
-        jumpscare.style.display = 'flex';
+    const jumpscare = document.getElementById('jumpscare');
+    const prankMessage = document.getElementById('prankMessage');
+    const screamSound = document.getElementById('screamSound');
+    const laughSound = document.getElementById('laughSound');
+    
+    // Tampilkan jumpscare
+    jumpscare.style.display = 'flex';
+    
+    // Mainkan suara jeritan
+    screamSound.currentTime = 0;
+    screamSound.volume = 1.0;
+    screamSound.play();
+    
+    // Setelah 1 detik, tambahkan efek dan tampilkan pesan prank
+    setTimeout(() => {
+        jumpscare.classList.add('show-message');
         
-        // Mainkan suara jeritan
-        screamSound.currentTime = 0;
-        screamSound.volume = 1.0;
-        screamSound.play();
+        // Mainkan suara tawa
+        laughSound.currentTime = 0;
+        laughSound.volume = 0.7;
+        laughSound.play();
         
-        // Setelah 3 detik, sembunyikan jumpscare dan reset permainan
-        setTimeout(() => {
-            jumpscare.style.display = 'none';
-            canSpin = true;
-            spinButton.disabled = false;
-            prizeDisplay.textContent = "Putar lagi?";
-            wheel.style.transform = 'rotate(0deg)';
-        }, 3000);
-    }
-});
+    }, 1000);
+    
+    // Setelah 4 detik total, sembunyikan jumpscare dan reset permainan
+    setTimeout(() => {
+        jumpscare.style.display = 'none';
+        jumpscare.classList.remove('show-message');
+        resetGame();
+    }, 4000);
+}
+
+function resetGame() {
+    canSpin = true;
+    spinButton.disabled = false;
+    prizeDisplay.textContent = "Berani coba lagi?";
+    wheel.style.transform = 'rotate(0deg)';
+}
