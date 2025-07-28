@@ -309,3 +309,47 @@ button:hover::after {
     transform: scale(1.1);
     box-shadow: 0 0 20px #ff0000;
 }
+/* Jumpscare */
+.jumpscare {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.prank-message {
+    position: absolute;
+    font-size: 4rem;
+    color: #ff0000;
+    text-shadow: 0 0 20px #000;
+    animation: shake 0.5s infinite;
+}
+
+/* Halaman Akhir */
+.prank-finale {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    color: #fff;
+}
+
+.prank-finale h2 {
+    color: #ff0000;
+    font-size: 3rem;
+    text-shadow: 0 0 10px #ff0000;
+    animation: pulse 1s infinite;
+}
