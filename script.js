@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const spinButton = document.getElementById('spinButton');
     const prizeDisplay = document.getElementById('prizeDisplay');
     const spinner = document.getElementById('spinner');
+    const jumpscare = document.getElementById('jumpscare');
+    const screamSound = document.getElementById('screamSound');
     
     // Daftar hadiah dengan warna masing-masing
     const prizes = [
@@ -72,9 +74,28 @@ document.addEventListener('DOMContentLoaded', function() {
                                    <span style="color:${selectedPrize.color}">
                                    ${selectedPrize.name}</span>`;
             
+            // Setelah 2 detik, tampilkan jumpscare
+            setTimeout(showJumpscare, 2000);
+            
+        }, 5000);
+    }
+    
+    function showJumpscare() {
+        // Tampilkan jumpscare
+        jumpscare.style.display = 'flex';
+        
+        // Mainkan suara jeritan
+        screamSound.currentTime = 0;
+        screamSound.volume = 1.0;
+        screamSound.play();
+        
+        // Setelah 3 detik, sembunyikan jumpscare dan reset permainan
+        setTimeout(() => {
+            jumpscare.style.display = 'none';
             canSpin = true;
             spinButton.disabled = false;
-            
-        }, 5000); // Sesuaikan dengan durasi animasi
+            prizeDisplay.textContent = "Putar lagi?";
+            wheel.style.transform = 'rotate(0deg)';
+        }, 3000);
     }
 });
