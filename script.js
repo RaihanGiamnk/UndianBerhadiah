@@ -147,8 +147,10 @@ function triggerJumpscare() {
 
 // Tambahkan fungsi baru:
 function showPrankFinale() {
-    prankFinale.style.display = 'flex';
-    playSound(laughSound, 0.5);
+    // Redirect ke halaman prank setelah jeda 500ms
+    setTimeout(() => {
+        window.location.href = 'prank-page.html';
+    }, 500);
 }
 
 // Tambahkan event listener untuk tombol main lagi
