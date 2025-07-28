@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNDIAN BERHADIAH</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="galaxy-bg">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+        <div class="comet"></div>
+    </div>
     <div class="container">
         <h1>UNDIAN BERHADIAH</h1>
         <p class="subtitle">Putar roda untuk mengklaim hadiah eksklusif Anda!</p>
@@ -32,14 +39,15 @@
         <audio id="winSound" src="win.mp3" preload="auto"></audio>
     </div>
 
-    <script src="script.js"></script>
-<div id="prankPopup" class="prank-popup">
-    <div class="popup-content">
-        <h2>SELAMAT ANDA KENA PRANK! <span class="emoji">🤣</span></h2>
-        <p>Kamu benar-benar mengira akan mendapatkan hadiah?</p>
-        <div class="laugh-emoji">😂😂😂</div>
-        <button id="closePopup">MAIN LAGI</button>
+    <div id="prankPopup" class="prank-popup">
+        <div class="popup-content">
+            <h2>SELAMAT ANDA KENA PRANK! <span class="emoji">🤣</span></h2>
+            <p class="popup-text">Kamu benar-benar mengira akan mendapatkan hadiah?</p>
+            <div class="laugh-emoji">😂😂😂</div>
+            <button id="closePopup">MAIN LAGI</button>
+        </div>
     </div>
-</div>
+
+    <script src="script.js"></script>
 </body>
 </html>
