@@ -3,16 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const spinButton = document.getElementById('spinButton');
     const prizeDisplay = document.getElementById('prizeDisplay');
     const spinner = document.getElementById('spinner');
-    const jumpscare = document.getElementById('jumpscare');
-    const prankMessage = document.getElementById('prankMessage');
     
-    // Audio elements
-    const screamSound = document.getElementById('screamSound');
-    const laughSound = document.getElementById('laughSound');
-    const spinSound = document.getElementById('spinSound');
-    const winSound = document.getElementById('winSound');
-    
-    // Prize configuration
+    // Daftar hadiah dengan warna
     const prizes = [
         { name: "MOBIL MEWAH", color: "#FF5252" },
         { name: "LIBURAN KE BALI", color: "#FF4081" },
@@ -24,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: "UANG TUNAI 10 JUTA", color: "#18FFFF" }
     ];
     
-    // Initialize the wheel
+    // Inisialisasi roda
     function initWheel() {
         const segmentAngle = 360 / prizes.length;
         let html = '';
@@ -47,74 +39,50 @@ document.addEventListener('DOMContentLoaded', function() {
         wheel.innerHTML = html;
     }
     
-    // Play sound helper function
-    function playSound(sound, volume = 1.0) {
-        try {
-            sound.currentTime = 0;
-            sound.volume = volume;
-            sound.play().catch(e => console.log("Audio play prevented:", e));
-        } catch (e) {
-            console.log("Audio error:", e);
-        }
-    }
-    
-    // Spin the wheel
+    // Fungsi untuk memutar roda
     function spinWheel() {
-        const spinDegrees = 360 * 10 + Math.floor(Math.random() * 360);
-        wheel.style.transform = `rotate(${-spinDegrees}deg)`;
-        playSound(spinSound, 0.5);
-        
-        setTimeout(() => {
-            const prizeIndex = Math.floor((spinDegrees % 360) / (360 / prizes.length));
-            const selectedPrize = prizes[prizeIndex];
-            
-            prizeDisplay.innerHTML = `SELAMAT!<br>Anda mendapatkan:<br>
-                                   <span style="color:${selectedPrize.color}">
-                                   ${selectedPrize.name}</span>`;
-            playSound(winSound, 0.7);
-            
-            setTimeout(showJumpscare, 2000);
-        }, 5000);
-    }
-    
-    // Show jumpscare effect
-    function showJumpscare() {
-        jumpscare.style.display = 'flex';
-        playSound(screamSound, 0.8);
-        
-        setTimeout(() => {
-            jumpscare.classList.add('show-message');
-            playSound(laughSound, 0.6);
-        }, 1000);
-        
-        setTimeout(() => {
-            jumpscare.style.display = 'none';
-            jumpscare.classList.remove('show-message');
-            resetGame();
-        }, 4000);
-    }
-    
-    // Reset the game
-    function resetGame() {
-        wheel.style.transform = 'rotate(0deg)';
-        spinButton.disabled = false;
-        prizeDisplay.textContent = "Berani coba lagi?";
-    }
-    
-    // Event listener for spin button
-    spinButton.addEventListener('click', function() {
-        if (spinButton.disabled) return;
-        
+        // Matikan tombol selama putaran
         spinButton.disabled = true;
-        spinner.style.display = 'block';
-        prizeDisplay.textContent = "Memproses hadiah Anda...";
         
+        // Hitung putaran acak (5-10 putaran penuh + sudut acak)
+        const spinDegrees = 1800 + Math.floor(Math.random() * 1800);
+        
+        // Terapkan animasi putaran
+        wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+        wheel.style.transform = `rotate(${-spinDegrees}deg)`;
+        
+        // Tampilkan spinner loading
+        spinner.style.display = 'block';
+        prizeDisplay.textContent = "Memproses...";
+        
+        // Setelah animasi selesai, tentukan hadiah
         setTimeout(() => {
             spinner.style.display = 'none';
-            spinWheel();
-        }, 2000);
-    });
+            
+            // Hitung hadiah berdasarkan posisi akhir
+            const normalizedDegree = spinDegrees % 360;
+            const prizeIndex = Math.floor(normalizedDegree / (360 / prizes.length));
+            const selectedPrize = prizes[prizeIndex];
+            
+            // Tampilkan hadiah
+            prizeDisplay.innerHTML = `
+                SELAMAT!<br>
+                Anda mendapatkan:<br>
+                <span style="color:${selectedPrize.color}; font-weight:bold">
+                ${selectedPrize.name}</span>
+            `;
+            
+            // Aktifkan tombol kembali setelah 3 detik
+            setTimeout(() => {
+                spinButton.disabled = false;
+            }, 3000);
+            
+        }, 4000); // Sesuaikan dengan durasi animasi
+    }
     
-    // Initialize the wheel on load
+    // Event listener untuk tombol putar
+    spinButton.addEventListener('click', spinWheel);
+    
+    // Inisialisasi roda saat halaman dimuat
     initWheel();
 });
