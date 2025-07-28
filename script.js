@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const spinner = document.getElementById('spinner');
     const jumpscare = document.getElementById('jumpscare');
     const prankMessage = document.getElementById('prankMessage');
+    const prankPopup = document.getElementById('prankPopup');
+    const closePopup = document.getElementById('closePopup');
     
     // Audio elements
     const screamSound = document.getElementById('screamSound');
@@ -101,103 +103,38 @@ document.addEventListener('DOMContentLoaded', function() {
             playSound(laughSound, 0.6);
         }, 1000);
         
-        // Setelah 4 detik, sembunyikan jumpscare
+        // Setelah 3 detik, sembunyikan jumpscare dan tampilkan popup
         setTimeout(() => {
             jumpscare.style.display = 'none';
             jumpscare.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            resetGame();
-        }, 4000);
+            showPrankPopup();
+        }, 3000);
+    }
+    
+    // Fungsi tampilkan popup
+    function showPrankPopup() {
+        prankPopup.style.display = 'flex';
+        playSound(laughSound, 0.5);
+    }
+    
+    // Fungsi tutup popup
+    function closePrankPopup() {
+        prankPopup.style.display = 'none';
+        resetGame();
     }
     
     // Reset permainan
     function resetGame() {
         spinButton.disabled = false;
         prizeDisplay.textContent = "Berani coba lagi?";
+        wheel.style.transform = 'rotate(0deg)';
+        document.body.style.overflow = 'auto';
     }
     
     // Event listener
     spinButton.addEventListener('click', spinWheel);
+    closePopup.addEventListener('click', closePrankPopup);
     
     // Inisialisasi
     initWheel();
 });
-// Di bagian variabel tambahkan:
-const prankFinale = document.getElementById('prankFinale');
-const playAgainButton = document.getElementById('playAgainButton');
-
-// Ganti fungsi triggerJumpscare menjadi:
-function triggerJumpscare() {
-    // Tampilkan jumpscare
-    jumpscare.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    playSound(screamSound, 0.8);
-    
-    setTimeout(() => {
-        jumpscare.classList.add('active');
-        playSound(laughSound, 0.6);
-    }, 1000);
-    
-    setTimeout(() => {
-        jumpscare.style.display = 'none';
-        jumpscare.classList.remove('active');
-        showPrankFinale();
-    }, 3000); // Waktu jumpscare diperpendek jadi 3 detik
-}
-
-// Tambahkan fungsi baru:
-function showPrankFinale() {
-    // Redirect ke halaman prank setelah jeda 500ms
-    setTimeout(() => {
-        window.location.href = 'prank-page.html';
-    }, 500);
-}
-
-// Tambahkan event listener untuk tombol main lagi
-playAgainButton.addEventListener('click', function() {
-    prankFinale.style.display = 'none';
-    resetGame();
-});
-
-// Fungsi resetGame tetap sama
-function resetGame() {
-    spinButton.disabled = false;
-    prizeDisplay.textContent = "Berani coba lagi?";
-    wheel.style.transform = 'rotate(0deg)';
-}
-// Tambahkan di bagian variabel global
-const prankPopup = document.getElementById('prankPopup');
-const closePopup = document.getElementById('closePopup');
-
-// Modifikasi fungsi triggerJumpscare
-function triggerJumpscare() {
-    // Tampilkan jumpscare
-    jumpscare.style.display = 'flex';
-    playSound(screamSound, 0.8);
-    
-    setTimeout(() => {
-        jumpscare.classList.add('active');
-        playSound(laughSound, 0.6);
-    }, 1000);
-    
-    setTimeout(() => {
-        jumpscare.style.display = 'none';
-        jumpscare.classList.remove('active');
-        showPrankPopup(); // Tampilkan popup setelah jumpscare
-    }, 3000);
-}
-
-// Fungsi tampilkan popup
-function showPrankPopup() {
-    prankPopup.style.display = 'flex';
-    playSound(laughSound, 0.5);
-}
-
-// Fungsi tutup popup
-function closePrankPopup() {
-    prankPopup.style.display = 'none';
-    resetGame();
-}
-
-// Event listener untuk tombol close
-closePopup.addEventListener('click', closePrankPopup);
