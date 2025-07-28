@@ -377,3 +377,42 @@ h1 {
 }
 
 /* [CSS lainnya tetap sama] */
+.prank-message {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff0000;
+    text-shadow: 0 0 10px #000, 0 0 20px #ff0000;
+    opacity: 0;
+    transition: opacity 1s ease;
+    text-align: center;
+    animation: shake 0.5s infinite;
+    z-index: 1001;
+}
+
+/* Animasi tambahan */
+@keyframes shake {
+    0% { transform: translateX(-50%) translateY(0); }
+    25% { transform: translateX(-50%) translateY(-5px); }
+    50% { transform: translateX(-50%) translateY(0); }
+    75% { transform: translateX(-50%) translateY(5px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* Efek flash */
+@keyframes flash {
+    0% { background-color: rgba(0,0,0,0.8); }
+    50% { background-color: rgba(255,0,0,0.5); }
+    100% { background-color: rgba(0,0,0,0.8); }
+}
+
+.jumpscare.show-message .prank-message {
+    opacity: 1;
+}
+
+.jumpscare.show-message {
+    animation: flash 0.3s infinite;
+}
