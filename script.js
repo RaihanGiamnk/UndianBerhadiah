@@ -163,35 +163,3 @@ function resetGame() {
     prizeDisplay.textContent = "Berani coba lagi?";
     wheel.style.transform = 'rotate(0deg)';
 }
-// Variabel global
-const jumpscare = document.getElementById('jumpscare');
-const prankFinale = document.getElementById('prankFinale');
-const playAgainButton = document.getElementById('playAgainButton');
-
-// Fungsi triggerJumpscare yang diperbaiki
-function triggerJumpscare() {
-    // 1. Tampilkan jumpscare
-    jumpscare.style.display = 'flex';
-    
-    // 2. Setelah 2 detik, sembunyikan jumpscare dan tampilkan finale
-    setTimeout(() => {
-        jumpscare.style.display = 'none';
-        showPrankFinale();
-    }, 2000);
-}
-
-// Fungsi showPrankFinale
-function showPrankFinale() {
-    prankFinale.style.display = 'flex';
-}
-
-// Fungsi resetGame
-function resetGame() {
-    prankFinale.style.display = 'none';
-    spinButton.disabled = false;
-    prizeDisplay.textContent = "Berani coba lagi?";
-    wheel.style.transform = 'rotate(0deg)';
-}
-
-// Event listener untuk tombol Main Lagi
-playAgainButton.addEventListener('click', resetGame);
