@@ -122,3 +122,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inisialisasi
     initWheel();
 });
+// Di bagian variabel tambahkan:
+const prankFinale = document.getElementById('prankFinale');
+const playAgainButton = document.getElementById('playAgainButton');
+
+// Ganti fungsi triggerJumpscare menjadi:
+function triggerJumpscare() {
+    // Tampilkan jumpscare
+    jumpscare.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    playSound(screamSound, 0.8);
+    
+    setTimeout(() => {
+        jumpscare.classList.add('active');
+        playSound(laughSound, 0.6);
+    }, 1000);
+    
+    setTimeout(() => {
+        jumpscare.style.display = 'none';
+        jumpscare.classList.remove('active');
+        showPrankFinale();
+    }, 3000); // Waktu jumpscare diperpendek jadi 3 detik
+}
+
+// Tambahkan fungsi baru:
+function showPrankFinale() {
+    prankFinale.style.display = 'flex';
+    playSound(laughSound, 0.5);
+}
+
+// Tambahkan event listener untuk tombol main lagi
+playAgainButton.addEventListener('click', function() {
+    prankFinale.style.display = 'none';
+    resetGame();
+});
+
+// Fungsi resetGame tetap sama
+function resetGame() {
+    spinButton.disabled = false;
+    prizeDisplay.textContent = "Berani coba lagi?";
+    wheel.style.transform = 'rotate(0deg)';
+}
