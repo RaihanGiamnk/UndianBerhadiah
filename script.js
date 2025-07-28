@@ -119,3 +119,19 @@ function resetGame() {
     prizeDisplay.textContent = "Berani coba lagi?";
     wheel.style.transform = 'rotate(0deg)';
 }
+// Pastikan path benar saat memanggil audio
+const screamSound = new Audio('scream.mp3');
+const laughSound = new Audio('laugh.mp3');
+const spinSound = new Audio('spin.mp3'); 
+const winSound = new Audio('win.mp3');
+
+// Fungsi putar suara yang reusable
+function playSound(sound, volume = 1.0) {
+    sound.currentTime = 0;
+    sound.volume = volume;
+    sound.play().catch(e => console.log("Autoplay blocked:", e));
+}
+
+// Contoh penggunaan:
+playSound(spinSound); // Saal memutar roda
+playSound(screamSound, 0.8); // Saat jumpscare
