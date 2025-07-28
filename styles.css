@@ -1,3 +1,4 @@
+/* === BASE STYLES === */
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -14,6 +15,7 @@ body {
     transition: background 1s ease;
 }
 
+/* === MAIN CONTAINER === */
 .container {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
@@ -28,6 +30,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* === TYPOGRAPHY === */
 h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
@@ -53,6 +56,7 @@ h1 {
     transition: all 0.3s ease;
 }
 
+/* === WHEEL COMPONENT === */
 .wheel-container {
     position: relative;
     width: 300px;
@@ -76,6 +80,8 @@ h1 {
     width: 50%;
     height: 50%;
     transform-origin: bottom right;
+    left: 0;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,6 +89,13 @@ h1 {
     padding-left: 50px;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.wheel-segment span {
+    transform-origin: center center;
+    text-align: center;
+    width: 100%;
 }
 
 .wheel-center {
@@ -112,6 +125,7 @@ h1 {
     filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
 }
 
+/* === BUTTONS === */
 button {
     background: linear-gradient(135deg, #ff0000, #990000);
     color: white;
@@ -158,6 +172,7 @@ button:hover::after {
     left: 100%;
 }
 
+/* === LOADING SPINNER === */
 .spinner {
     display: none;
     width: 40px;
@@ -174,174 +189,7 @@ button:hover::after {
     100% { transform: rotate(360deg); }
 }
 
-.prank-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    animation: bgPulse 2s infinite;
-}
-
-.prank-message {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ff0000;
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-    margin-bottom: 20px;
-    animation: shake 0.5s infinite, colorChange 3s infinite;
-}
-
-.scary-face {
-    font-size: 8rem;
-    margin: 20px 0;
-    animation: float 3s ease-in-out infinite;
-}
-
-.prank-submessage {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 30px;
-    text-shadow: 0 0 5px #ff0000;
-}
-
-.laugh-text {
-    font-size: 2rem;
-    color: #ff0000;
-    animation: laugh 1s infinite;
-}
-
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); }
-    75% { transform: translateX(-10px); }
-    100% { transform: translateX(0); }
-}
-
-@keyframes colorChange {
-    0% { color: #ff0000; }
-    50% { color: #ffffff; }
-    100% { color: #ff0000; }
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0); }
-}
-
-@keyframes laugh {
-    0% { opacity: 0.3; }
-    50% { opacity: 1; }
-    100% { opacity: 0.3; }
-}
-
-@keyframes bgPulse {
-    0% { background-color: rgba(0, 0, 0, 0.9); }
-    50% { background-color: rgba(20, 0, 0, 0.9); }
-    100% { background-color: rgba(0, 0, 0, 0.9); }
-}
-
-.confetti {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: #f00;
-    opacity: 0;
-    z-index: 10;
-}
-
-.blood {
-    position: absolute;
-    background-color: #ff0000;
-    border-radius: 50%;
-    opacity: 0.7;
-    z-index: 5;
-}
-
-/* Efek khusus untuk prank */
-.evil-eyes {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    border-radius: 50%;
-    box-shadow: 0 0 20px red;
-    animation: blink 4s infinite;
-    display: none;
-    z-index: 99;
-}
-
-@keyframes blink {
-    0%, 48%, 52%, 100% { transform: scale(1); }
-    50% { transform: scale(0.1); }
-    }
-.wheel-segment {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    transform-origin: bottom right;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding-left: 50px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    overflow: hidden;
-}
-
-.wheel-segment span {
-    transform-origin: center center;
-    text-align: center;
-    width: 100%;
-}
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-}
-
-.container {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    max-width: 600px;
-    width: 90%;
-    transition: all 0.5s ease;
-    position: relative;
-    z-index: 1;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px #ff0000;
-    color: #fff;
-}
-
-/* [CSS untuk roda dan elemen lainnya sama seperti sebelumnya] */
-
-/* Jumpscare Styles */
+/* === JUMSCARE EFFECTS === */
 .jumpscare {
     position: fixed;
     top: 0;
@@ -362,6 +210,31 @@ h1 {
     animation: shake 0.2s infinite;
 }
 
+.prank-message {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff0000;
+    text-shadow: 0 0 10px #000, 0 0 20px #ff0000;
+    opacity: 0;
+    transition: opacity 1s ease;
+    text-align: center;
+    animation: textShake 0.5s infinite;
+    z-index: 1001;
+}
+
+.jumpscare.show-message .prank-message {
+    opacity: 1;
+}
+
+.jumpscare.show-message {
+    animation: flash 0.3s infinite;
+}
+
+/* === ANIMATIONS === */
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -376,25 +249,7 @@ h1 {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-/* [CSS lainnya tetap sama] */
-.prank-message {
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ff0000;
-    text-shadow: 0 0 10px #000, 0 0 20px #ff0000;
-    opacity: 0;
-    transition: opacity 1s ease;
-    text-align: center;
-    animation: shake 0.5s infinite;
-    z-index: 1001;
-}
-
-/* Animasi tambahan */
-@keyframes shake {
+@keyframes textShake {
     0% { transform: translateX(-50%) translateY(0); }
     25% { transform: translateX(-50%) translateY(-5px); }
     50% { transform: translateX(-50%) translateY(0); }
@@ -402,17 +257,43 @@ h1 {
     100% { transform: translateX(-50%) translateY(0); }
 }
 
-/* Efek flash */
 @keyframes flash {
     0% { background-color: rgba(0,0,0,0.8); }
     50% { background-color: rgba(255,0,0,0.5); }
     100% { background-color: rgba(0,0,0,0.8); }
 }
 
-.jumpscare.show-message .prank-message {
-    opacity: 1;
+/* === PARTICLE EFFECTS === */
+.confetti {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #f00;
+    opacity: 0;
+    z-index: 10;
 }
 
-.jumpscare.show-message {
-    animation: flash 0.3s infinite;
+.blood {
+    position: absolute;
+    background-color: #ff0000;
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 5;
 }
+
+.evil-eyes {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: 0 0 20px red;
+    animation: blink 4s infinite;
+    display: none;
+    z-index: 99;
+}
+
+@keyframes blink {
+    0%, 48%, 52%, 100% { transform: scale(1); }
+    50% { transform: scale(0.1); }
+        }
