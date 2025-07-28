@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const spinButton = document.getElementById('spinButton');
     const prizeDisplay = document.getElementById('prizeDisplay');
     const spinner = document.getElementById('spinner');
+    const jumpscare = document.getElementById('jumpscare');
+    const prankMessage = document.getElementById('prankMessage');
+    
+    // Audio elements
+    const screamSound = document.getElementById('screamSound');
+    const laughSound = document.getElementById('laughSound');
+    const spinSound = document.getElementById('spinSound');
+    const winSound = document.getElementById('winSound');
     
     // Daftar hadiah dengan warna
     const prizes = [
@@ -41,48 +49,76 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fungsi untuk memutar roda
     function spinWheel() {
-        // Matikan tombol selama putaran
+        if (spinButton.disabled) return;
+        
         spinButton.disabled = true;
+        spinner.style.display = 'block';
+        prizeDisplay.textContent = "Memproses hadiah Anda...";
+        playSound(spinSound, 0.5);
         
-        // Hitung putaran acak (5-10 putaran penuh + sudut acak)
+        // Putaran acak (5-10 putaran + sudut acak)
         const spinDegrees = 1800 + Math.floor(Math.random() * 1800);
-        
-        // Terapkan animasi putaran
-        wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
         wheel.style.transform = `rotate(${-spinDegrees}deg)`;
         
-        // Tampilkan spinner loading
-        spinner.style.display = 'block';
-        prizeDisplay.textContent = "Memproses...";
-        
-        // Setelah animasi selesai, tentukan hadiah
         setTimeout(() => {
             spinner.style.display = 'none';
             
-            // Hitung hadiah berdasarkan posisi akhir
-            const normalizedDegree = spinDegrees % 360;
-            const prizeIndex = Math.floor(normalizedDegree / (360 / prizes.length));
+            // Hitung hadiah
+            const prizeIndex = Math.floor((spinDegrees % 360) / (360 / prizes.length));
             const selectedPrize = prizes[prizeIndex];
             
             // Tampilkan hadiah
-            prizeDisplay.innerHTML = `
-                SELAMAT!<br>
-                Anda mendapatkan:<br>
-                <span style="color:${selectedPrize.color}; font-weight:bold">
-                ${selectedPrize.name}</span>
-            `;
+            prizeDisplay.innerHTML = `SELAMAT!<br>Anda mendapatkan:<br>
+                                   <span style="color:${selectedPrize.color}">
+                                   ${selectedPrize.name}</span>`;
+            playSound(winSound, 0.7);
             
-            // Aktifkan tombol kembali setelah 3 detik
-            setTimeout(() => {
-                spinButton.disabled = false;
-            }, 3000);
+            // Tampilkan jumpscare setelah 2 detik
+            setTimeout(triggerJumpscare, 2000);
             
-        }, 4000); // Sesuaikan dengan durasi animasi
+        }, 5000); // Waktu putaran 5 detik
     }
     
-    // Event listener untuk tombol putar
+    // Fungsi untuk memainkan suara
+    function playSound(sound, volume = 1.0) {
+        sound.currentTime = 0;
+        sound.volume = volume;
+        sound.play().catch(e => console.log("Error playing sound:", e));
+    }
+    
+    // Fungsi jumpscare
+    function triggerJumpscare() {
+        // Tampilkan jumpscare
+        jumpscare.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Mainkan suara jeritan
+        playSound(screamSound, 0.8);
+        
+        // Setelah 1 detik, tampilkan pesan dan mainkan tawa
+        setTimeout(() => {
+            jumpscare.classList.add('active');
+            playSound(laughSound, 0.6);
+        }, 1000);
+        
+        // Setelah 4 detik, sembunyikan jumpscare
+        setTimeout(() => {
+            jumpscare.style.display = 'none';
+            jumpscare.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetGame();
+        }, 4000);
+    }
+    
+    // Reset permainan
+    function resetGame() {
+        spinButton.disabled = false;
+        prizeDisplay.textContent = "Berani coba lagi?";
+    }
+    
+    // Event listener
     spinButton.addEventListener('click', spinWheel);
     
-    // Inisialisasi roda saat halaman dimuat
+    // Inisialisasi
     initWheel();
 });
